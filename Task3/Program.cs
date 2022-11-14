@@ -18,23 +18,27 @@ namespace Task3
             int charCount = 0;
             int wordCount = 0;
             int lineCount = 1;
+
             using (StreamReader sr = new StreamReader(path))
             {
-                while (!sr.EndOfStream)
-                {
-                    charCount++;
+                string str = sr.ReadToEnd();
+                charCount = str.Length;
 
-                    if (sr.Read() == ' ')
+                foreach (char c in str)
+                {
+                    if (c == ' ')
                     {
                         wordCount++;
                     }
-
-                    if (sr.Read() == '\n')
+                    else
                     {
-                        lineCount++;
+                        if (c == '\n')
+                        {
+                            lineCount++;
+                        }
                     }
                 }
-                Console.WriteLine("{0}, {1}, {2}.", charCount, wordCount, lineCount);
+                Console.WriteLine($"Количество символов: {charCount}\nКоличество слов: {wordCount}\nКоличество строк: {lineCount}.");
                 Console.ReadLine();
             }
         }
